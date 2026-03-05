@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,7 +53,10 @@ export function OrganizationCreatePage() {
             <Input
               value={form.organizationNumber}
               onChange={(event) =>
-                setForm((prev) => ({ ...prev, organizationNumber: event.target.value }))
+                setForm((prev) => ({
+                  ...prev,
+                  organizationNumber: event.target.value,
+                }))
               }
               placeholder="예: 100006"
               required
@@ -64,7 +67,10 @@ export function OrganizationCreatePage() {
             <Input
               value={form.organizationName}
               onChange={(event) =>
-                setForm((prev) => ({ ...prev, organizationName: event.target.value }))
+                setForm((prev) => ({
+                  ...prev,
+                  organizationName: event.target.value,
+                }))
               }
               placeholder="예: 신규기관명"
               required
@@ -109,7 +115,10 @@ export function OrganizationCreatePage() {
             <Input
               value={form.managerName}
               onChange={(event) =>
-                setForm((prev) => ({ ...prev, managerName: event.target.value }))
+                setForm((prev) => ({
+                  ...prev,
+                  managerName: event.target.value,
+                }))
               }
               placeholder="예: 홍길동"
               required
@@ -119,7 +128,9 @@ export function OrganizationCreatePage() {
             <span className="font-medium">대표 연락처</span>
             <Input
               value={form.contact}
-              onChange={(event) => setForm((prev) => ({ ...prev, contact: event.target.value }))}
+              onChange={(event) =>
+                setForm((prev) => ({ ...prev, contact: event.target.value }))
+              }
               placeholder="예: 02-1234-5678"
               required
             />
