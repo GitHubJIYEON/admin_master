@@ -19,8 +19,10 @@ import { SalesStatusPage } from "@/pages/SalesStatusPage";
 import { SalesStatusDetailPage } from "@/pages/SalesStatusDetailPage";
 import { SalesStatusCreatePage } from "@/pages/SalesStatusCreatePage";
 import { SalesStatusEditPage } from "@/pages/SalesStatusEditPage";
+import { LoginPage } from "@/pages/LoginPage";
 
 export const router = createBrowserRouter([
+    { path: "/login", element: <LoginPage /> },
     {
         path: "/",
         element: <AppLayout />,
