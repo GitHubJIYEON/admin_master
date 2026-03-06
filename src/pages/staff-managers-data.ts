@@ -1,6 +1,6 @@
 export type StaffStatus = "활성" | "비활성";
 export type Team = "빅데이터팀" | "리서치팀";
-export type RoleGroup = "마스터 관리자" | "운영 관리자";
+export type RoleGroup = "슈퍼 관리자" | "마스터 관리자";
 export type MfaStatus = "사용" | "미사용";
 
 export type StaffManager = {
@@ -22,6 +22,21 @@ export type StaffManager = {
 };
 
 export const INITIAL_STAFF_MANAGERS: StaffManager[] = [
+    {
+        id: "MGR-000",
+        name: "김진성",
+        loginId: "wise_jinseong",
+        team: "빅데이터팀",
+        roleGroup: "슈퍼 관리자",
+        status: "활성",
+        contact: "010-1234-5678",
+        mfaEnabled: "사용",
+        lastLoginAt: "2026-03-04 09:12",
+        lastActivityAt: "2026-03-04 10:03",
+        createdAt: "2025-11-03",
+        createdBy: "super.admin",
+        isLocked: false,
+    },
     {
         id: "MGR-001",
         name: "이지연",
@@ -104,7 +119,7 @@ export const INITIAL_STAFF_MANAGERS: StaffManager[] = [
         name: "안세훈",
         loginId: "wise_sehun",
         team: "리서치팀",
-        roleGroup: "운영 관리자",
+        roleGroup: "마스터 관리자",
         status: "활성",
         contact: "010-1234-5678",
         mfaEnabled: "사용",

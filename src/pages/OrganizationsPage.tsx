@@ -218,7 +218,6 @@ export function OrganizationsPage() {
                                     기관 사용자 수
                                 </th>
                                 <th className="px-3 py-2.5 text-center font-medium">상세보기</th>
-                                <th className="px-3 py-2.5 text-center font-medium">구성원 관리</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -284,24 +283,13 @@ export function OrganizationsPage() {
                                                 </NavLink>
                                             </Button>
                                         </td>
-                                        <td className="px-3 py-2.5 text-center">
-                                            <Button
-                                                asChild
-                                                size="sm"
-                                                variant="outline"
-                                                type="button">
-                                                <NavLink to={`/organizations/${row.id}/members`}>
-                                                    구성원 관리
-                                                </NavLink>
-                                            </Button>
-                                        </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
                                     <td
                                         className="h-24 px-3 py-2.5 text-center text-muted-foreground"
-                                        colSpan={11}>
+                                        colSpan={10}>
                                         검색 결과가 없습니다.
                                     </td>
                                 </tr>
