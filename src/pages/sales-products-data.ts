@@ -65,6 +65,24 @@ export const PRODUCT_ROWS: ProductRow[] = [
         price: 100000,
         updatedAt: "2026-03-02",
     },
+    {
+        id: "org-admin",
+        status: "사용",
+        productCode: "ORG-ADMIN",
+        productName: "기관 관리자",
+        category: "계정",
+        price: 50000,
+        updatedAt: "2026-03-06",
+    },
+    {
+        id: "org-user",
+        status: "사용",
+        productCode: "ORG-USER",
+        productName: "기관 사용자",
+        category: "계정",
+        price: 20000,
+        updatedAt: "2026-03-06",
+    },
 ];
 
 export function formatPrice(price: number) {

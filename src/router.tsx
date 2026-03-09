@@ -6,7 +6,10 @@ import { OrganizationDetailPage } from "@/pages/OrganizationDetailPage";
 import { OrganizationEditPage } from "@/pages/OrganizationEditPage";
 import { OrganizationCreatePage } from "@/pages/OrganizationCreatePage";
 import { OrganizationMembersPage } from "@/pages/OrganizationMembersPage";
+import { OrganizationChartPage } from "@/pages/OrganizationChartPage";
 import { UsersPage } from "@/pages/UsersPage";
+import { UserDetailPage } from "@/pages/UserDetailPage";
+import { UserCreatePage } from "@/pages/UserCreatePage";
 import { StaffManagersPage } from "@/pages/StaffManagersPage";
 import { StaffManagerDetailPage } from "@/pages/StaffManagerDetailPage";
 import { PermissionGradesPage } from "@/pages/PermissionGradesPage.tsx";
@@ -19,8 +22,10 @@ import { SalesStatusPage } from "@/pages/SalesStatusPage";
 import { SalesStatusDetailPage } from "@/pages/SalesStatusDetailPage";
 import { SalesStatusCreatePage } from "@/pages/SalesStatusCreatePage";
 import { SalesStatusEditPage } from "@/pages/SalesStatusEditPage";
+import { LoginPage } from "@/pages/LoginPage";
 
 export const router = createBrowserRouter([
+    { path: "/login", element: <LoginPage /> },
     {
         path: "/",
         element: <AppLayout />,
@@ -35,6 +40,10 @@ export const router = createBrowserRouter([
                 element: <OrganizationMembersPage />,
             },
             {
+                path: "organizations/:organizationId/chart",
+                element: <OrganizationChartPage />,
+            },
+            {
                 path: "organizations/:organizationId/edit",
                 element: <OrganizationEditPage />,
             },
@@ -44,6 +53,8 @@ export const router = createBrowserRouter([
             },
             { path: "users", element: <Navigate to="/users/list" replace /> },
             { path: "users/list", element: <UsersPage /> },
+            { path: "users/new", element: <UserCreatePage /> },
+            { path: "users/:userId", element: <UserDetailPage /> },
             { path: "users/staff-managers", element: <StaffManagersPage /> },
             { path: "users/staff-managers/:staffId", element: <StaffManagerDetailPage /> },
             { path: "users/permission-grades", element: <PermissionGradesPage /> },

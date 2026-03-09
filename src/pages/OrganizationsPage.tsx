@@ -12,6 +12,8 @@ type OrganizationRow = {
     organizationNumber: string;
     organizationName: string;
     organizationType: OrganizationType;
+    department: string;
+    division: string;
     managerName: string;
     contact: string;
     registeredAt: string;
@@ -27,6 +29,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100001",
         organizationName: "서울시 공공데이터센터",
         organizationType: "공공기관",
+        department: "정보화기획부",
+        division: "데이터관리과",
         managerName: "김민수",
         contact: "02-1234-5678",
         registeredAt: "2025-11-10",
@@ -40,6 +44,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100002",
         organizationName: "한국디지털교육원",
         organizationType: "교육기관",
+        department: "교육운영부",
+        division: "디지털교육과",
         managerName: "이서연",
         contact: "031-456-7890",
         registeredAt: "2025-12-02",
@@ -53,6 +59,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100003",
         organizationName: "그로스인사이트",
         organizationType: "민간기업",
+        department: "서비스개발본부",
+        division: "플랫폼운영팀",
         managerName: "박정우",
         contact: "070-8899-1122",
         registeredAt: "2026-01-18",
@@ -66,6 +74,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100004",
         organizationName: "대한서비스협회",
         organizationType: "협회",
+        department: "사무국",
+        division: "회원관리과",
         managerName: "최다은",
         contact: "02-9988-3344",
         registeredAt: "2025-10-21",
@@ -79,6 +89,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100005",
         organizationName: "부산스마트행정원",
         organizationType: "공공기관",
+        department: "스마트행정부",
+        division: "정보시스템과",
         managerName: "정하늘",
         contact: "051-333-2211",
         registeredAt: "2025-08-30",
@@ -207,6 +219,8 @@ export function OrganizationsPage() {
                                 <th className="px-3 py-2.5 text-left font-medium">기관번호</th>
                                 <th className="px-3 py-2.5 text-center font-medium">기관명</th>
                                 <th className="px-3 py-2.5 text-center font-medium">기관유형</th>
+                                <th className="px-3 py-2.5 text-center font-medium">부서</th>
+                                <th className="px-3 py-2.5 text-center font-medium">과</th>
                                 <th className="px-3 py-2.5 text-center font-medium">관리자명</th>
                                 <th className="px-3 py-2.5 text-center font-medium">대표 연락처</th>
                                 <th className="px-3 py-2.5 text-center font-medium">등록일</th>
@@ -217,8 +231,8 @@ export function OrganizationsPage() {
                                 <th className="px-3 py-2.5 text-right font-medium">
                                     기관 사용자 수
                                 </th>
+                                <th className="px-3 py-2.5 text-center font-medium">조직도 관리</th>
                                 <th className="px-3 py-2.5 text-center font-medium">상세보기</th>
-                                <th className="px-3 py-2.5 text-center font-medium">구성원 관리</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -245,6 +259,12 @@ export function OrganizationsPage() {
                                         </td>
                                         <td className="px-3 py-2.5 text-center">
                                             {row.organizationType}
+                                        </td>
+                                        <td className="px-3 py-2.5 text-center">
+                                            {row.department || "-"}
+                                        </td>
+                                        <td className="px-3 py-2.5 text-center">
+                                            {row.division || "-"}
                                         </td>
                                         <td className="px-3 py-2.5 text-center">
                                             {row.managerName}
@@ -279,8 +299,8 @@ export function OrganizationsPage() {
                                                 size="sm"
                                                 variant="outline"
                                                 type="button">
-                                                <NavLink to={`/organizations/${row.id}`}>
-                                                    상세
+                                                <NavLink to={`/organizations/${row.id}/chart`}>
+                                                    조직도 관리
                                                 </NavLink>
                                             </Button>
                                         </td>
@@ -290,8 +310,8 @@ export function OrganizationsPage() {
                                                 size="sm"
                                                 variant="outline"
                                                 type="button">
-                                                <NavLink to={`/organizations/${row.id}/members`}>
-                                                    구성원 관리
+                                                <NavLink to={`/organizations/${row.id}`}>
+                                                    상세
                                                 </NavLink>
                                             </Button>
                                         </td>
@@ -301,7 +321,7 @@ export function OrganizationsPage() {
                                 <tr>
                                     <td
                                         className="h-24 px-3 py-2.5 text-center text-muted-foreground"
-                                        colSpan={11}>
+                                        colSpan={12}>
                                         검색 결과가 없습니다.
                                     </td>
                                 </tr>

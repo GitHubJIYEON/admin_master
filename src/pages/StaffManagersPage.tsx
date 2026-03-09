@@ -15,6 +15,9 @@ import {
 type SortKey = "lastLoginAt" | "createdAt" | "name";
 type SortDirection = "asc" | "desc";
 
+const getStaffRoleBadgeClass = (role: RoleGroup) =>
+    role === "마스터 관리자" ? "bg-blue-100 text-blue-700" : "bg-slate-900 text-white";
+
 export function StaffManagersPage() {
     const [rows, setRows] = useState<StaffManager[]>(INITIAL_STAFF_MANAGERS);
     const [selectedIds, setSelectedIds] = useState<Record<string, boolean>>({});
@@ -215,7 +218,14 @@ export function StaffManagersPage() {
                                             {row.loginId}
                                         </td>
                                         <td className="px-3 py-2.5">{row.team}</td>
-                                        <td className="px-3 py-2.5">{row.roleGroup}</td>
+                                        <td className="px-3 py-2.5">
+                                            <span
+                                                className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${getStaffRoleBadgeClass(
+                                                    row.roleGroup,
+                                                )}`}>
+                                                {row.roleGroup}
+                                            </span>
+                                        </td>
                                         <td className="px-3 py-2.5 text-center">
                                             <Button
                                                 size="sm"

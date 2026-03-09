@@ -13,6 +13,8 @@ type OrganizationRow = {
     organizationNumber: string;
     organizationName: string;
     organizationType: OrganizationType;
+    department: string;
+    division: string;
     managerName: string;
     contact: string;
     registeredAt: string;
@@ -28,6 +30,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100001",
         organizationName: "서울시 공공데이터센터",
         organizationType: "공공기관",
+        department: "정보화기획부",
+        division: "데이터관리과",
         managerName: "김민수",
         contact: "02-1234-5678",
         registeredAt: "2025-11-10",
@@ -41,6 +45,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100002",
         organizationName: "한국디지털교육원",
         organizationType: "교육기관",
+        department: "교육운영부",
+        division: "디지털교육과",
         managerName: "이서연",
         contact: "031-456-7890",
         registeredAt: "2025-12-02",
@@ -54,6 +60,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100003",
         organizationName: "그로스인사이트",
         organizationType: "민간기업",
+        department: "서비스개발본부",
+        division: "플랫폼운영팀",
         managerName: "박정우",
         contact: "070-8899-1122",
         registeredAt: "2026-01-18",
@@ -67,6 +75,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100004",
         organizationName: "대한서비스협회",
         organizationType: "협회",
+        department: "사무국",
+        division: "회원관리과",
         managerName: "최다은",
         contact: "02-9988-3344",
         registeredAt: "2025-10-21",
@@ -80,6 +90,8 @@ const ORGANIZATION_ROWS: OrganizationRow[] = [
         organizationNumber: "100005",
         organizationName: "부산스마트행정원",
         organizationType: "공공기관",
+        department: "스마트행정부",
+        division: "정보시스템과",
         managerName: "정하늘",
         contact: "051-333-2211",
         registeredAt: "2025-08-30",
@@ -103,6 +115,8 @@ export function OrganizationEditPage() {
         usageStatus: organization?.usageStatus ?? "사용",
         organizationType: organization?.organizationType ?? "공공기관",
         organizationName: organization?.organizationName ?? "",
+        department: organization?.department ?? "",
+        division: organization?.division ?? "",
         managerName: organization?.managerName ?? "",
         contact: organization?.contact ?? "",
         contractStatus: organization?.contractStatus ?? "정상",
@@ -189,6 +203,26 @@ export function OrganizationEditPage() {
                             <option value="사용">사용</option>
                             <option value="미사용">미사용</option>
                         </select>
+                    </label>
+                    <label className="flex flex-col gap-2 text-sm">
+                        <span className="font-medium">부서</span>
+                        <Input
+                            value={form.department}
+                            onChange={(event) =>
+                                setForm((prev) => ({ ...prev, department: event.target.value }))
+                            }
+                            placeholder="예: 정보화기획부"
+                        />
+                    </label>
+                    <label className="flex flex-col gap-2 text-sm">
+                        <span className="font-medium">과</span>
+                        <Input
+                            value={form.division}
+                            onChange={(event) =>
+                                setForm((prev) => ({ ...prev, division: event.target.value }))
+                            }
+                            placeholder="예: 데이터관리과"
+                        />
                     </label>
                     <label className="flex flex-col gap-2 text-sm">
                         <span className="font-medium">관리자명</span>
