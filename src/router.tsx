@@ -6,8 +6,10 @@ import { OrganizationDetailPage } from "@/pages/OrganizationDetailPage";
 import { OrganizationEditPage } from "@/pages/OrganizationEditPage";
 import { OrganizationCreatePage } from "@/pages/OrganizationCreatePage";
 import { OrganizationMembersPage } from "@/pages/OrganizationMembersPage";
+import { OrganizationChartPage } from "@/pages/OrganizationChartPage";
 import { UsersPage } from "@/pages/UsersPage";
 import { UserDetailPage } from "@/pages/UserDetailPage";
+import { UserCreatePage } from "@/pages/UserCreatePage";
 import { StaffManagersPage } from "@/pages/StaffManagersPage";
 import { StaffManagerDetailPage } from "@/pages/StaffManagerDetailPage";
 import { PermissionGradesPage } from "@/pages/PermissionGradesPage.tsx";
@@ -38,6 +40,10 @@ export const router = createBrowserRouter([
                 element: <OrganizationMembersPage />,
             },
             {
+                path: "organizations/:organizationId/chart",
+                element: <OrganizationChartPage />,
+            },
+            {
                 path: "organizations/:organizationId/edit",
                 element: <OrganizationEditPage />,
             },
@@ -47,6 +53,7 @@ export const router = createBrowserRouter([
             },
             { path: "users", element: <Navigate to="/users/list" replace /> },
             { path: "users/list", element: <UsersPage /> },
+            { path: "users/new", element: <UserCreatePage /> },
             { path: "users/:userId", element: <UserDetailPage /> },
             { path: "users/staff-managers", element: <StaffManagersPage /> },
             { path: "users/staff-managers/:staffId", element: <StaffManagerDetailPage /> },

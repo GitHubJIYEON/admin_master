@@ -16,6 +16,7 @@ export function SalesStatusPage() {
         return SALES_ROWS.filter((row) => {
             return (
                 row.orderNumber.toLowerCase().includes(normalizedKeyword) ||
+                row.organizationName.toLowerCase().includes(normalizedKeyword) ||
                 row.productNames.some((product) =>
                     product.toLowerCase().includes(normalizedKeyword),
                 )
@@ -43,16 +44,16 @@ export function SalesStatusPage() {
 
     return (
         <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">판매 현황</h1>
-          <p className="text-muted-foreground">
-            주문 및 결제 상태를 조회하고 서비스 이용 기간을 확인합니다.
-          </p>
-        </div>
-        <Button asChild type="button">
-          <NavLink to="/sales/status/new">결제 추가</NavLink>
-        </Button>
+            <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                    <h1 className="text-2xl font-bold tracking-tight">판매 현황</h1>
+                    <p className="text-muted-foreground">
+                        주문 및 결제 상태를 조회하고 서비스 이용 기간을 확인합니다.
+                    </p>
+                </div>
+                <Button asChild type="button">
+                    <NavLink to="/sales/status/new">결제 추가</NavLink>
+                </Button>
             </div>
 
             <div className="rounded-lg border bg-card p-4">
@@ -60,7 +61,7 @@ export function SalesStatusPage() {
                     <Input
                         value={keyword}
                         onChange={(event) => setKeyword(event.target.value)}
-                        placeholder="주문번호 또는 상품명 검색"
+                        placeholder="주문번호, 기관명 또는 상품명 검색"
                         className="md:max-w-sm"
                     />
                     <p className="text-sm text-muted-foreground">
@@ -82,11 +83,12 @@ export function SalesStatusPage() {
                                 </th>
                                 <th className="w-16 px-3 py-2.5 text-center font-medium">번호</th>
                                 <th className="px-3 py-2.5 text-left font-medium">주문번호</th>
+                                <th className="px-3 py-2.5 text-left font-medium">기관명</th>
                                 <th className="px-3 py-2.5 text-center font-medium">결제 상태</th>
                                 <th className="px-3 py-2.5 text-center font-medium">결제방법</th>
                                 <th className="px-3 py-2.5 text-center font-medium">주문일</th>
                                 <th className="px-3 py-2.5 text-left font-medium">상품명</th>
-                                <th className="px-3 py-2.5 text-right font-medium">서비스 가격</th>
+                                <th className="px-3 py-2.5 text-right font-medium">최종 금액</th>
                                 <th className="px-3 py-2.5 text-center font-medium">시작일</th>
                                 <th className="px-3 py-2.5 text-center font-medium">만료일</th>
                                 <th className="w-28 px-3 py-2.5 text-center font-medium">
@@ -114,6 +116,7 @@ export function SalesStatusPage() {
                                         <td className="px-3 py-2.5 font-mono text-xs">
                                             {row.orderNumber}
                                         </td>
+                                        <td className="px-3 py-2.5">{row.organizationName}</td>
                                         <td className="px-3 py-2.5 text-center">
                                             <span
                                                 className={
@@ -144,7 +147,7 @@ export function SalesStatusPage() {
                                             </div>
                                         </td>
                                         <td className="px-3 py-2.5 text-right">
-                                            {formatPrice(row.servicePrice)}
+                                            {formatPrice(row.finalPrice)}
                                         </td>
                                         <td className="px-3 py-2.5 text-center">{row.startDate}</td>
                                         <td className="px-3 py-2.5 text-center">
@@ -152,7 +155,9 @@ export function SalesStatusPage() {
                                         </td>
                                         <td className="px-3 py-2.5 text-center">
                                             <Button asChild size="sm" variant="outline">
-                                                <NavLink to={`/sales/status/${row.id}`}>상세보기</NavLink>
+                                                <NavLink to={`/sales/status/${row.id}`}>
+                                                    상세보기
+                                                </NavLink>
                                             </Button>
                                         </td>
                                     </tr>
@@ -161,7 +166,7 @@ export function SalesStatusPage() {
                                 <tr>
                                     <td
                                         className="h-24 px-3 py-2.5 text-center text-muted-foreground"
-                                        colSpan={11}>
+                                        colSpan={12}>
                                         검색 결과가 없습니다.
                                     </td>
                                 </tr>

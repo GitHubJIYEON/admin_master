@@ -15,6 +15,8 @@ type UserRow = {
     phoneMasked: string;
     employeeId: string;
     organization: string;
+    department: string;
+    division: string;
     role: RoleGrade;
     status: UserStatus;
     inviteMethod: InviteMethod;
@@ -31,6 +33,8 @@ const USER_ROWS: UserRow[] = [
         phoneMasked: "010-****-2489",
         employeeId: "A-1024",
         organization: "서울시 공공데이터센터",
+        department: "정보화기획부",
+        division: "데이터관리과",
         role: "운영관리자",
         status: "활성",
         inviteMethod: "자체",
@@ -45,6 +49,8 @@ const USER_ROWS: UserRow[] = [
         phoneMasked: "010-****-9021",
         employeeId: "B-4431",
         organization: "한국디지털교육원",
+        department: "교육운영부",
+        division: "디지털교육과",
         role: "일반관리자",
         status: "활성",
         inviteMethod: "초대",
@@ -59,6 +65,8 @@ const USER_ROWS: UserRow[] = [
         phoneMasked: "010-****-7710",
         employeeId: "C-7780",
         organization: "그로스인사이트",
+        department: "서비스개발본부",
+        division: "플랫폼운영팀",
         role: "보안관리자",
         status: "정지",
         inviteMethod: "자체",
@@ -73,6 +81,8 @@ const USER_ROWS: UserRow[] = [
         phoneMasked: "010-****-6638",
         employeeId: "D-1098",
         organization: "대한서비스협회",
+        department: "사무국",
+        division: "회원관리과",
         role: "뷰어",
         status: "탈퇴",
         inviteMethod: "초대",
@@ -87,6 +97,8 @@ const USER_ROWS: UserRow[] = [
         phoneMasked: "010-****-1145",
         employeeId: "E-5510",
         organization: "부산스마트행정원",
+        department: "스마트행정부",
+        division: "정보시스템과",
         role: "슈퍼관리자",
         status: "활성",
         inviteMethod: "자체",
@@ -101,6 +113,8 @@ const USER_ROWS: UserRow[] = [
         phoneMasked: "010-****-3304",
         employeeId: "A-1099",
         organization: "서울시 공공데이터센터",
+        department: "정보화기획부",
+        division: "시스템운영과",
         role: "일반관리자",
         status: "초대 대기",
         inviteMethod: "초대",
@@ -302,14 +316,18 @@ export function UsersPage() {
             <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                 <div>
                     <h1 className="text-2xl font-bold tracking-tight">사용자 목록</h1>
-                    <p className="text-muted-foreground">시스템 사용자를 조회하고 관리합니다.</p>
+                    <p className="text-muted-foreground">
+                        와이즈온 서비스의 사용자를 조회하고 관리합니다.
+                    </p>
                 </div>
                 {PERMISSIONS.usersInvite && (
                     <div className="flex items-center gap-2">
                         <Button variant="outline" type="button">
                             CSV 내보내기
                         </Button>
-                        <Button type="button">사용자 초대/추가</Button>
+                        <Button asChild type="button">
+                            <NavLink to="/users/new">사용자 초대/추가</NavLink>
+                        </Button>
                     </div>
                 )}
             </div>
@@ -485,6 +503,12 @@ export function UsersPage() {
                                             소속 조직
                                         </th>
                                         <th className="px-3 py-2.5 text-center font-medium">
+                                            부서
+                                        </th>
+                                        <th className="px-3 py-2.5 text-center font-medium">
+                                            과
+                                        </th>
+                                        <th className="px-3 py-2.5 text-center font-medium">
                                             역할
                                         </th>
                                         <th className="px-3 py-2.5 text-center font-medium">
@@ -533,6 +557,12 @@ export function UsersPage() {
                                                     {row.organization}
                                                 </td>
                                                 <td className="px-3 py-2.5 text-center">
+                                                    {row.department || "-"}
+                                                </td>
+                                                <td className="px-3 py-2.5 text-center">
+                                                    {row.division || "-"}
+                                                </td>
+                                                <td className="px-3 py-2.5 text-center">
                                                     <span
                                                         className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${getRoleBadgeClass(
                                                             row.role,
@@ -571,7 +601,7 @@ export function UsersPage() {
                                         <tr>
                                             <td
                                                 className="h-24 px-3 py-2.5 text-center text-muted-foreground"
-                                                colSpan={8}>
+                                                colSpan={10}>
                                                 검색 결과가 없습니다.
                                             </td>
                                         </tr>
@@ -599,24 +629,7 @@ export function UsersPage() {
                                 생성일 {sortBy === "createdAt" ? `(${sortDir})` : ""}
                             </Button>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <span className="text-muted-foreground">페이지 크기</span>
-                            <select
-                                value={pageSize}
-                                onChange={(event) => {
-                                    const nextParams = new URLSearchParams(searchParams);
-                                    nextParams.set("pageSize", event.target.value);
-                                    nextParams.set("page", "1");
-                                    setSearchParams(nextParams);
-                                }}
-                                className="border-input h-9 rounded-md border bg-transparent px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]">
-                                {PAGE_SIZE_OPTIONS.map((size) => (
-                                    <option key={size} value={size}>
-                                        {size}개
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+
                         <div className="flex items-center gap-2">
                             <Button
                                 size="sm"
@@ -646,6 +659,24 @@ export function UsersPage() {
                                 }}>
                                 다음
                             </Button>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="text-muted-foreground">페이지 크기</span>
+                            <select
+                                value={pageSize}
+                                onChange={(event) => {
+                                    const nextParams = new URLSearchParams(searchParams);
+                                    nextParams.set("pageSize", event.target.value);
+                                    nextParams.set("page", "1");
+                                    setSearchParams(nextParams);
+                                }}
+                                className="border-input h-9 rounded-md border bg-transparent px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]">
+                                {PAGE_SIZE_OPTIONS.map((size) => (
+                                    <option key={size} value={size}>
+                                        {size}개
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
 
