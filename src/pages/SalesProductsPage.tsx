@@ -86,7 +86,9 @@ export function SalesProductsPage() {
                                 <th className="px-3 py-2.5 text-left font-medium">상품코드</th>
                                 <th className="px-3 py-2.5 text-left font-medium">상품명</th>
                                 <th className="px-3 py-2.5 text-left font-medium">카테고리</th>
-                                <th className="px-3 py-2.5 text-left font-medium">판매가</th>
+                                <th className="px-3 py-2.5 text-left font-medium">
+                                    판매가 (필요한가..)
+                                </th>
                                 <th className="px-3 py-2.5 text-left font-medium">수정일</th>
                                 <th className="w-28 px-3 py-2.5 text-center font-medium">
                                     상세보기

@@ -16,6 +16,8 @@ type OrganizationCreateForm = {
     managerName: string;
     contact: string;
     contractStatus: ContractStatus;
+    department: string;
+    division: string;
 };
 
 const INITIAL_FORM: OrganizationCreateForm = {
@@ -26,6 +28,8 @@ const INITIAL_FORM: OrganizationCreateForm = {
     managerName: "",
     contact: "",
     contractStatus: "정상",
+    department: "",
+    division: "",
 };
 
 export function OrganizationCreatePage() {
@@ -63,20 +67,7 @@ export function OrganizationCreatePage() {
                             required
                         />
                     </label>
-                    <label className="flex flex-col gap-2 text-sm">
-                        <span className="font-medium">기관명</span>
-                        <Input
-                            value={form.organizationName}
-                            onChange={(event) =>
-                                setForm((prev) => ({
-                                    ...prev,
-                                    organizationName: event.target.value,
-                                }))
-                            }
-                            placeholder="예: 신규기관명"
-                            required
-                        />
-                    </label>
+
                     <label className="flex flex-col gap-2 text-sm">
                         <span className="font-medium">기관유형</span>
                         <select
@@ -95,6 +86,20 @@ export function OrganizationCreatePage() {
                         </select>
                     </label>
                     <label className="flex flex-col gap-2 text-sm">
+                        <span className="font-medium">기관명</span>
+                        <Input
+                            value={form.organizationName}
+                            onChange={(event) =>
+                                setForm((prev) => ({
+                                    ...prev,
+                                    organizationName: event.target.value,
+                                }))
+                            }
+                            placeholder="예: 신규기관명"
+                            required
+                        />
+                    </label>
+                    <label className="flex flex-col gap-2 text-sm">
                         <span className="font-medium">사용여부</span>
                         <select
                             value={form.usageStatus}
@@ -108,6 +113,26 @@ export function OrganizationCreatePage() {
                             <option value="사용">사용</option>
                             <option value="미사용">미사용</option>
                         </select>
+                    </label>
+                    <label className="flex flex-col gap-2 text-sm">
+                        <span className="font-medium">부서</span>
+                        <Input
+                            value={form.department}
+                            onChange={(event) =>
+                                setForm((prev) => ({ ...prev, department: event.target.value }))
+                            }
+                            placeholder="예: 정보화기획부"
+                        />
+                    </label>
+                    <label className="flex flex-col gap-2 text-sm">
+                        <span className="font-medium">과</span>
+                        <Input
+                            value={form.division}
+                            onChange={(event) =>
+                                setForm((prev) => ({ ...prev, division: event.target.value }))
+                            }
+                            placeholder="예: 데이터관리과"
+                        />
                     </label>
                     <label className="flex flex-col gap-2 text-sm">
                         <span className="font-medium">관리자명</span>
@@ -131,8 +156,9 @@ export function OrganizationCreatePage() {
                             required
                         />
                     </label>
+
                     <label className="flex flex-col gap-2 text-sm md:col-span-2">
-                        <span className="font-medium">계약상태</span>
+                        <span className="font-medium">계약상태 (필요할까?)</span>
                         <select
                             value={form.contractStatus}
                             onChange={(event) =>
