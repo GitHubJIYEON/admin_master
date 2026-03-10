@@ -300,9 +300,9 @@ export function UserCreatePage() {
                                     onChange={(e) => setField("role", e.target.value as RoleGrade)}
                                     className={SELECT_CLASS}
                                     required>
-                                    <option value="보안관리자">보안관리자</option>
-                                    <option value="일반관리자">일반관리자</option>
-                                    <option value="뷰어">뷰어</option>
+                                    <option value="기관관리자">기관관리자</option>
+                                    <option value="기관사용자">기관사용자</option>
+                                    <option value="테스트사용자">테스트사용자</option>
                                 </select>
                             </label>
 
