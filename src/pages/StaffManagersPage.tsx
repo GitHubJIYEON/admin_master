@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import {
     INITIAL_STAFF_MANAGERS,
     toSortableNumber,
-    type MfaStatus,
     type RoleGroup,
     type StaffManager,
     type StaffStatus,
@@ -25,7 +24,6 @@ export function StaffManagersPage() {
     const [teamFilter, setTeamFilter] = useState<Team | "전체">("전체");
     const [roleFilter, setRoleFilter] = useState<RoleGroup | "전체">("전체");
     const [statusFilter, setStatusFilter] = useState<StaffStatus | "전체">("전체");
-    const [mfaFilter, setMfaFilter] = useState<MfaStatus | "전체">("전체");
     const [sortKey, setSortKey] = useState<SortKey>("lastLoginAt");
     const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
@@ -40,9 +38,8 @@ export function StaffManagersPage() {
             const matchesTeam = teamFilter === "전체" || row.team === teamFilter;
             const matchesRole = roleFilter === "전체" || row.roleGroup === roleFilter;
             const matchesStatus = statusFilter === "전체" || row.status === statusFilter;
-            const matchesMfa = mfaFilter === "전체" || row.mfaEnabled === mfaFilter;
 
-            return matchesSearch && matchesTeam && matchesRole && matchesStatus && matchesMfa;
+            return matchesSearch && matchesTeam && matchesRole && matchesStatus;
         });
 
         return [...baseRows].sort((a, b) => {
@@ -57,7 +54,7 @@ export function StaffManagersPage() {
 
             return sortDirection === "asc" ? result : -result;
         });
-    }, [mfaFilter, roleFilter, rows, search, sortDirection, sortKey, statusFilter, teamFilter]);
+    }, [roleFilter, rows, search, sortDirection, sortKey, statusFilter, teamFilter]);
 
     const isAllChecked =
         filteredRows.length > 0 && filteredRows.every((row) => selectedIds[row.id]);
@@ -89,12 +86,6 @@ export function StaffManagersPage() {
                     : row,
             ),
         );
-    };
-
-    const resetPassword = (targetId: string) => {
-        const target = rows.find((row) => row.id === targetId);
-        if (!target) return;
-        window.alert(`${target.name}(${target.loginId}) 비밀번호 재설정 링크를 발송했습니다.`);
     };
 
     return (
@@ -142,14 +133,6 @@ export function StaffManagersPage() {
                         <option value="비활성">비활성</option>
                     </select>
                     <select
-                        value={mfaFilter}
-                        onChange={(event) => setMfaFilter(event.target.value as MfaStatus | "전체")}
-                        className="border-input h-9 min-w-28 rounded-md border bg-transparent px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]">
-                        <option value="전체">2FA: 전체</option>
-                        <option value="사용">사용</option>
-                        <option value="미사용">미사용</option>
-                    </select>
-                    <select
                         value={sortKey}
                         onChange={(event) => setSortKey(event.target.value as SortKey)}
                         className="border-input h-9 min-w-32 rounded-md border bg-transparent px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]">
@@ -171,7 +154,7 @@ export function StaffManagersPage() {
                 </div>
 
                 <div className="overflow-x-auto rounded-md border">
-                    <table className="w-full min-w-[1600px] border-collapse text-sm">
+                    <table className="w-full min-w-[1400px] border-collapse text-sm">
                         <thead className="bg-muted/50 text-foreground">
                             <tr className="border-b">
                                 <th className="w-12 px-3 py-2.5 text-center font-medium">
@@ -192,9 +175,6 @@ export function StaffManagersPage() {
                                 </th>
                                 <th className="px-3 py-2.5 text-center font-medium">등록일</th>
                                 <th className="px-3 py-2.5 text-center font-medium">상세보기</th>
-                                <th className="px-3 py-2.5 text-center font-medium">
-                                    비밀번호 재설정
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -246,15 +226,6 @@ export function StaffManagersPage() {
                                                 <NavLink to={`/users/staff-managers/${row.id}`}>
                                                     상세 보기
                                                 </NavLink>
-                                            </Button>
-                                        </td>
-                                        <td className="px-3 py-2.5 text-center">
-                                            <Button
-                                                size="sm"
-                                                variant="outline"
-                                                type="button"
-                                                onClick={() => resetPassword(row.id)}>
-                                                비밀번호 재설정
                                             </Button>
                                         </td>
                                     </tr>

@@ -9,6 +9,7 @@ import {
     MessageSquare,
     Megaphone,
     Settings,
+    FileText,
     ChevronsUpDown,
     ChevronRight,
     Bell,
@@ -83,7 +84,7 @@ function NavSidebarButton({
 
 const user = {
     name: "관리자",
-    email: "admin@example.com",
+    email: "admin@wiseinc.co.kr",
     avatar: "",
 };
 
@@ -194,6 +195,15 @@ const navGroups: NavGroupItem[] = [
                 icon: MessageSquare,
             },
             { to: "/board/notices", label: "공지사항", icon: Megaphone },
+        ],
+    },
+    {
+        key: "surveys",
+        label: "설문 관리",
+        icon: FileText,
+        children: [
+            { to: "/surveys/categories", label: "템플릿 카테고리 관리" },
+            { to: "/surveys/templates", label: "설문 템플릿 목록" },
         ],
     },
     {
