@@ -40,6 +40,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 
 type NavLeafItem = {
     to: string;
@@ -88,9 +89,10 @@ const user = {
 
 function NavUserProfile() {
     const { isMobile } = useSidebar();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        console.log("로그아웃");
+        navigate("/login");
     };
 
     const handleNotifications = () => {
@@ -249,7 +251,7 @@ export function AppSidebar() {
                                         M
                                     </div>
                                     <span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
-                                        마스터 관리자
+                                        [임시] 마스터 관리자
                                     </span>
                                 </div>
                             </SidebarMenuItem>
