@@ -108,7 +108,7 @@ export function LoginPage() {
     };
 
     return (
-        <main className="bg-background min-h-screen p-4">
+        <main className="bg-[#f7f7f7] min-h-screen p-4">
             <div className="mx-auto grid min-h-screen w-full max-w-md place-items-center">
                 <Card className="w-full">
                     <CardHeader className="gap-3">
@@ -119,7 +119,7 @@ export function LoginPage() {
                             <div className="min-w-0">
                                 <CardTitle className="text-xl">마스터 관리자 로그인</CardTitle>
                                 <CardDescription className="mt-1">
-                                    관리자 계정으로 시스템에 로그인합니다.
+                                    관리자 계정으로 와이즈온 시스템에 로그인합니다.
                                 </CardDescription>
                             </div>
                         </div>
