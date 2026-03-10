@@ -22,6 +22,11 @@ import { SalesStatusPage } from "@/pages/SalesStatusPage";
 import { SalesStatusDetailPage } from "@/pages/SalesStatusDetailPage";
 import { SalesStatusCreatePage } from "@/pages/SalesStatusCreatePage";
 import { SalesStatusEditPage } from "@/pages/SalesStatusEditPage";
+import { SurveyCategoriesPage } from "@/pages/SurveyCategoriesPage";
+import { SurveyTemplatesPage } from "@/pages/SurveyTemplatesPage";
+import { SurveyTemplateCreatePage } from "@/pages/SurveyTemplateCreatePage";
+import { SurveyTemplateDetailPage } from "@/pages/SurveyTemplateDetailPage";
+import { SurveyTemplateEditPage } from "@/pages/SurveyTemplateEditPage";
 import { LoginPage } from "@/pages/LoginPage";
 
 export const router = createBrowserRouter([
@@ -103,6 +108,26 @@ export const router = createBrowserRouter([
                         description="공지사항을 작성하고 게시 상태를 관리합니다."
                     />
                 ),
+            },
+            {
+                path: "surveys/templates",
+                element: <SurveyTemplatesPage />,
+            },
+            {
+                path: "surveys/templates/new",
+                element: <SurveyTemplateCreatePage />,
+            },
+            {
+                path: "surveys/templates/:templateId/edit",
+                element: <SurveyTemplateEditPage />,
+            },
+            {
+                path: "surveys/templates/:templateId",
+                element: <SurveyTemplateDetailPage />,
+            },
+            {
+                path: "surveys/categories",
+                element: <SurveyCategoriesPage />,
             },
             { path: "settings", element: <Navigate to="/settings/site-info" replace /> },
             { path: "settings/site-info", element: <SiteInfoPage /> },

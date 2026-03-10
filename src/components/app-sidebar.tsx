@@ -9,6 +9,7 @@ import {
     MessageSquare,
     Megaphone,
     Settings,
+    FileText,
     ChevronsUpDown,
     ChevronRight,
     Bell,
@@ -40,6 +41,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 
 type NavLeafItem = {
     to: string;
@@ -82,15 +84,16 @@ function NavSidebarButton({
 
 const user = {
     name: "관리자",
-    email: "admin@example.com",
+    email: "admin@wiseinc.co.kr",
     avatar: "",
 };
 
 function NavUserProfile() {
     const { isMobile } = useSidebar();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        console.log("로그아웃");
+        navigate("/login");
     };
 
     const handleNotifications = () => {
@@ -195,6 +198,15 @@ const navGroups: NavGroupItem[] = [
         ],
     },
     {
+        key: "surveys",
+        label: "설문 관리",
+        icon: FileText,
+        children: [
+            { to: "/surveys/categories", label: "템플릿 카테고리 관리" },
+            { to: "/surveys/templates", label: "설문 템플릿 목록" },
+        ],
+    },
+    {
         key: "settings",
         label: "시스템 설정",
         icon: Settings,
@@ -249,7 +261,7 @@ export function AppSidebar() {
                                         M
                                     </div>
                                     <span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
-                                        마스터 관리자
+                                        [임시] 마스터 관리자
                                     </span>
                                 </div>
                             </SidebarMenuItem>

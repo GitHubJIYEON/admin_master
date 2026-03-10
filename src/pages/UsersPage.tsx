@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 type UserStatus = "활성" | "정지" | "탈퇴" | "초대 대기";
 type InviteMethod = "초대" | "자체";
 type MfaStatus = "설정" | "미설정";
-type RoleGrade = "슈퍼관리자" | "운영관리자" | "보안관리자" | "일반관리자" | "뷰어";
+type RoleGrade = "일반사용자" | "기관관리자" | "기관사용자" | "테스트사용자" | "뷰어";
 
 type UserRow = {
     id: string;
@@ -35,7 +35,7 @@ const USER_ROWS: UserRow[] = [
         organization: "서울시 공공데이터센터",
         department: "정보화기획부",
         division: "데이터관리과",
-        role: "운영관리자",
+        role: "기관관리자",
         status: "활성",
         inviteMethod: "자체",
         mfaStatus: "설정",
@@ -51,7 +51,7 @@ const USER_ROWS: UserRow[] = [
         organization: "한국디지털교육원",
         department: "교육운영부",
         division: "디지털교육과",
-        role: "일반관리자",
+        role: "일반사용자",
         status: "활성",
         inviteMethod: "초대",
         mfaStatus: "미설정",
@@ -67,7 +67,7 @@ const USER_ROWS: UserRow[] = [
         organization: "그로스인사이트",
         department: "서비스개발본부",
         division: "플랫폼운영팀",
-        role: "보안관리자",
+        role: "기관사용자",
         status: "정지",
         inviteMethod: "자체",
         mfaStatus: "설정",
@@ -99,7 +99,7 @@ const USER_ROWS: UserRow[] = [
         organization: "부산스마트행정원",
         department: "스마트행정부",
         division: "정보시스템과",
-        role: "슈퍼관리자",
+        role: "테스트사용자",
         status: "활성",
         inviteMethod: "자체",
         mfaStatus: "설정",
@@ -115,17 +115,183 @@ const USER_ROWS: UserRow[] = [
         organization: "서울시 공공데이터센터",
         department: "정보화기획부",
         division: "시스템운영과",
-        role: "일반관리자",
+        role: "일반사용자",
         status: "초대 대기",
         inviteMethod: "초대",
         mfaStatus: "미설정",
         lastLoginAt: "-",
         createdAt: "2026-03-02",
     },
+    {
+        id: "USR-007",
+        name: "강민수",
+        email: "minsu.kang@kedu.ac.kr",
+        phoneMasked: "010-****-5521",
+        employeeId: "B-2201",
+        organization: "한국디지털교육원",
+        department: "교육운영부",
+        division: "콘텐츠개발과",
+        role: "기관사용자",
+        status: "활성",
+        inviteMethod: "자체",
+        mfaStatus: "설정",
+        lastLoginAt: "2026-03-06 10:22",
+        createdAt: "2025-09-15",
+    },
+    {
+        id: "USR-008",
+        name: "윤서현",
+        email: "seohyun.yoon@growthi.co.kr",
+        phoneMasked: "010-****-8833",
+        employeeId: "C-3345",
+        organization: "그로스인사이트",
+        department: "마케팅본부",
+        division: "데이터분석팀",
+        role: "기관사용자",
+        status: "활성",
+        inviteMethod: "초대",
+        mfaStatus: "미설정",
+        lastLoginAt: "2026-03-05 14:55",
+        createdAt: "2026-02-01",
+    },
+    {
+        id: "USR-009",
+        name: "조현우",
+        email: "hyunwoo.jo@ksa.or.kr",
+        phoneMasked: "010-****-1199",
+        employeeId: "D-6677",
+        organization: "대한서비스협회",
+        department: "사무국",
+        division: "정책기획과",
+        role: "기관관리자",
+        status: "활성",
+        inviteMethod: "자체",
+        mfaStatus: "설정",
+        lastLoginAt: "2026-03-06 08:10",
+        createdAt: "2025-07-20",
+    },
+    {
+        id: "USR-010",
+        name: "임수빈",
+        email: "subin.lim@bsma.go.kr",
+        phoneMasked: "010-****-4477",
+        employeeId: "E-8890",
+        organization: "부산스마트행정원",
+        department: "스마트행정부",
+        division: "민원지원과",
+        role: "일반사용자",
+        status: "정지",
+        inviteMethod: "자체",
+        mfaStatus: "설정",
+        lastLoginAt: "2026-02-15 16:30",
+        createdAt: "2025-11-08",
+    },
+    {
+        id: "USR-011",
+        name: "송지아",
+        email: "jia.song@seoul.gov",
+        phoneMasked: "010-****-2266",
+        employeeId: "A-2234",
+        organization: "서울시 공공데이터센터",
+        department: "정보화기획부",
+        division: "데이터관리과",
+        role: "뷰어",
+        status: "활성",
+        inviteMethod: "초대",
+        mfaStatus: "미설정",
+        lastLoginAt: "2026-03-04 11:45",
+        createdAt: "2026-01-25",
+    },
+    {
+        id: "USR-012",
+        name: "배준호",
+        email: "junho.bae@kedu.ac.kr",
+        phoneMasked: "010-****-9988",
+        employeeId: "B-5566",
+        organization: "한국디지털교육원",
+        department: "교육운영부",
+        division: "디지털교육과",
+        role: "테스트사용자",
+        status: "활성",
+        inviteMethod: "자체",
+        mfaStatus: "미설정",
+        lastLoginAt: "2026-03-03 09:00",
+        createdAt: "2025-12-18",
+    },
+    {
+        id: "USR-013",
+        name: "오지훈",
+        email: "jihun.oh@growthi.co.kr",
+        phoneMasked: "010-****-3344",
+        employeeId: "C-7788",
+        organization: "그로스인사이트",
+        department: "서비스개발본부",
+        division: "QA팀",
+        role: "기관사용자",
+        status: "탈퇴",
+        inviteMethod: "자체",
+        mfaStatus: "설정",
+        lastLoginAt: "2026-01-10 14:20",
+        createdAt: "2025-06-12",
+    },
+    {
+        id: "USR-014",
+        name: "신유나",
+        email: "yuna.shin@ksa.or.kr",
+        phoneMasked: "010-****-6655",
+        employeeId: "D-9900",
+        organization: "대한서비스협회",
+        department: "사무국",
+        division: "회원관리과",
+        role: "일반사용자",
+        status: "활성",
+        inviteMethod: "초대",
+        mfaStatus: "설정",
+        lastLoginAt: "2026-03-06 09:15",
+        createdAt: "2025-08-05",
+    },
+    {
+        id: "USR-015",
+        name: "권도윤",
+        email: "doyoon.kwon@bsma.go.kr",
+        phoneMasked: "010-****-1122",
+        employeeId: "E-1122",
+        organization: "부산스마트행정원",
+        department: "스마트행정부",
+        division: "정보시스템과",
+        role: "기관관리자",
+        status: "활성",
+        inviteMethod: "자체",
+        mfaStatus: "설정",
+        lastLoginAt: "2026-03-05 17:42",
+        createdAt: "2025-10-01",
+    },
+    {
+        id: "USR-016",
+        name: "홍예린",
+        email: "yerin.hong@seoul.gov",
+        phoneMasked: "010-****-7788",
+        employeeId: "A-3345",
+        organization: "서울시 공공데이터센터",
+        department: "정보화기획부",
+        division: "데이터관리과",
+        role: "기관사용자",
+        status: "초대 대기",
+        inviteMethod: "초대",
+        mfaStatus: "미설정",
+        lastLoginAt: "-",
+        createdAt: "2026-03-05",
+    },
 ];
 
 const STATUS_OPTIONS: Array<UserStatus | "전체"> = ["전체", "활성", "정지", "탈퇴", "초대 대기"];
-const ROLE_OPTIONS: Array<RoleGrade | "전체"> = ["전체", "보안관리자", "일반관리자", "뷰어"];
+const ROLE_OPTIONS: Array<RoleGrade | "전체"> = [
+    "전체",
+    "기관관리자",
+    "기관사용자",
+    "테스트사용자",
+    "뷰어",
+];
 const INVITE_OPTIONS: Array<InviteMethod | "전체"> = ["전체", "초대", "자체"];
 const MFA_OPTIONS: Array<MfaStatus | "전체"> = ["전체", "설정", "미설정"];
 const PERIOD_OPTIONS = [
@@ -160,14 +326,20 @@ const getStatusBadgeClass = (status: UserStatus) => {
 };
 
 const getRoleBadgeClass = (role: RoleGrade) => {
-    if (role === "슈퍼관리자") {
+    if (role === "기관관리자") {
         return "bg-slate-900 text-white";
     }
-    if (role === "보안관리자") {
+    if (role === "기관사용자") {
+        return "bg-blue-100 text-blue-700";
+    }
+    if (role === "테스트사용자") {
         return "bg-violet-100 text-violet-700";
     }
-    if (role === "운영관리자") {
-        return "bg-blue-100 text-blue-700";
+    if (role === "일반사용자") {
+        return "bg-gray-200 text-gray-700";
+    }
+    if (role === "뷰어") {
+        return "bg-gray-100 text-gray-700";
     }
     return "bg-slate-100 text-slate-700";
 };
@@ -211,11 +383,8 @@ export function UsersPage() {
 
     const filteredRows = useMemo(() => {
         const keyword = (searchParams.get("q") ?? "").toLowerCase();
-        const baseRows = USER_ROWS.filter(
-            (row) => row.role !== "슈퍼관리자" && row.role !== "운영관리자",
-        );
 
-        return baseRows.filter((row) => {
+        return USER_ROWS.filter((row) => {
             const matchesKeyword =
                 keyword.length === 0 ||
                 row.name.toLowerCase().includes(keyword) ||
@@ -505,9 +674,7 @@ export function UsersPage() {
                                         <th className="px-3 py-2.5 text-center font-medium">
                                             부서
                                         </th>
-                                        <th className="px-3 py-2.5 text-center font-medium">
-                                            과
-                                        </th>
+                                        <th className="px-3 py-2.5 text-center font-medium">과</th>
                                         <th className="px-3 py-2.5 text-center font-medium">
                                             역할
                                         </th>
